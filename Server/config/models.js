@@ -22,13 +22,8 @@ module.exports = {
           res.send({results: msg});
         });
       });
-      // text: Sequelize.STRING,
-      // bestie_ID: Sequelize.STRING,
-      // user_ID: Sequelize.STRING
-      // Sequelize.or(
-      // { id: [1,2,3] },
-      // { id: { gt: 10 } }
     },
+
     post: function (data, res) {
       console.log(data);
       console.log(data.message);
@@ -46,7 +41,6 @@ module.exports = {
   },
 
   users: {
-    // Ditto as above.
     get: function (ID, req, res) {
       //console.log("Request Data: " + ID);
       db.Users.sync().then(function(){
@@ -60,6 +54,7 @@ module.exports = {
         });
       });
     },
+
     post: function (data, res) {
       //console.log(data);
       var myUser;
@@ -74,12 +69,8 @@ module.exports = {
         //console.log(user);
         res.sendStatus(201);
       });
-      //leaving be for now
-      // res.sendStatus(201);
     }
   },
-
-
 
   profiles: {
     get: function (res) {
@@ -88,6 +79,32 @@ module.exports = {
     post: function (res) {
 
     }
+  },
+
+  status: {
+    post: function(data, res){
+      console.log(data);
+      db.Users.sync().then(function(){
+        db.Users.update({
+            status: data.status
+          }, {
+          where: {
+            id: data.id
+          }
+        }).then(function(user){
+            res.sendStatus(201);
+        });
+      });
+    }
+    // Post.update({
+    //   updatedAt: null,
+    // }, {
+    //   where: {
+    //     deletedAt: {
+    //       $ne: null
+    //     }
+    //   }
+    // });
   }
 };
 

@@ -23,16 +23,18 @@ angular.module('bestie.landing', [])
     var myUser;
     var deferred = $q.defer();
     // return $q(function(){
-    landing.getUser(2).then(function(user){
+    landing.getUser().then(function(user){
       console.log("The user: " + user.data.user[0].name);
       myUser = user;
       $scope.name = user.data.user[0].name;
       $scope.myProfile = user.data.user[0];
+      $scope.userStatus = user.data.user[0].status;
     }).then(function(){
       console.log("The bestie ID: "+ myUser.data.user[0].bestie_user_ID);
       landing.getUser(myUser.data.user[0].bestie_user_ID).then(function(bestie){
         console.log(bestie);
         $scope.bestieName = bestie.data.user[0].name;
+        $scope.bestieStatus = bestie.data.user[0].status;
         $scope.bestie = bestie.data.user[0];
         deferred.resolve("Success");
       });
@@ -57,6 +59,11 @@ angular.module('bestie.landing', [])
         }
       }
     });
+  };
+
+  $scope.updateStatus = function () {
+    $scope.myProfile.status = $scope.userStatus;
+    landing.updateStatus($scope.myProfile);
   };
 
   $scope.addMessage = function(){

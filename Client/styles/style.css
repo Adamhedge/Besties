@@ -32,6 +32,22 @@ h1 {
   padding: 0px 10px;
 }
 
+.statusInput {
+  width: 360px;
+  height: 31px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  margin: auto;
+  margin-right: 20px;
+  padding: 0px 10px;
+}
+
+.greeting {
+  width: 500px;
+  margin: auto;
+}
+
 .messageInput:focus, .messageButton:focus {
   outline: none;
 }
@@ -189,7 +205,13 @@ input[type=url]:focus {
   outline: none;
 }
 
-
+.statusForm {
+  margin-top: -25px;
+}
+.bestieStatus {
+  font-style: italic;
+  padding-left: 30px;
+}
 .error {
   border: red solid 4px;
   padding: 10px;

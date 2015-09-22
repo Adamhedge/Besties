@@ -3,8 +3,15 @@
   </div>
 
 <div class="greeting">
-  <p> Hello, {{ name }}, your bestie is {{ bestieName }} </p>
-  <a href="#" ng-click='makeUser()'>Make a user</a>
+  <p> Hello, {{ name }}!</p>
+  <div>Status <form name="userStatus" class="statusForm" ng-submit='updateStatus()'>
+        <input type='text' class="statusInput" ng-model='userStatus'>
+      </form>
+  </div>
+  <p><span>your bestie - {{ bestieName }}  </span></p>
+  <p><span class="bestieStatus">"{{ bestieStatus }}"</span></p>
+
+  <!-- <a href="#" ng-click='makeUser()'>Make a user</a> -->
 </div>
 
 <div id='messages'>

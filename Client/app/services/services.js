@@ -40,6 +40,15 @@ angular.module('bestie.services', [])
           message: message
         }
       });
+    },
+
+    updateStatus: function(profile) {
+      console.log(profile);
+      return $http({
+        method: 'POST',
+        url: 'besties/status',
+        data: profile
+      });
     }
   };
 });

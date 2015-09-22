@@ -51,6 +51,15 @@ module.exports = {
       var data = req.body;
       models.profiles.post(data, res);
     }
+  },
+
+  status: {
+    get: function(req, res) {
+    },
+    post: function(req, res){
+      var data = req.body;
+      models.status.post(data, res);
+    }
   }
 
   //
