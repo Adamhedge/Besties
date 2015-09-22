@@ -1,15 +1,22 @@
 var db = require('../DB/DB.js');
 var bodyParser = require('body-parser');
+var Sequelize = require('Sequelize');
 
 module.exports = {
   messages: {
     get: function (userID, bestieID, res) {
       db.Messages.sync().then(function() {
         db.Messages.findAll({
-          where: {
-            userID: userID,
-            bestie_ID: bestieID
-          }
+          where:
+            Sequelize.or({
+              userID: userID,
+              bestie_ID: bestieID
+            },
+            {
+              userID: bestieID,
+              bestie_ID: userID
+            }
+          )
         }).then(function(msg){
           console.log("Success");
           res.send({results: msg});
@@ -18,29 +25,23 @@ module.exports = {
       // text: Sequelize.STRING,
       // bestie_ID: Sequelize.STRING,
       // user_ID: Sequelize.STRING
+      // Sequelize.or(
+      // { id: [1,2,3] },
+      // { id: { gt: 10 } }
     },
     post: function (data, res) {
       console.log(data);
-      // db.Messages.sync().then(function() {
-      //   var newMessage = db.Messages.build({
-      //     user_name: data.user_name, //?How do we know?,
-      //     message: data.message,
-      //     room_name: data.room_name
-      //   });
-
-      //   newMessage.save().then(function(error){
-      //     if(error){
-      //       console.log(error);
-      //     }
-      //     res.sendStatus(201);
-      //   });
-      // });
-      // if(!err){
-      //     res.sendStatus(201);
-      //   } else {
-      //     console.log(err);
-      //     res.sendStatus(500);
-      //   }
+      console.log(data.message);
+      db.Messages.sync().then(function(){
+        return db.Messages.create({
+          userId: data.user.id,
+          text: data.message,
+          bestie_ID: data.user.bestie_user_ID
+        });
+      }).then(function(user){
+        //console.log(user);
+        res.sendStatus(201);
+      });
     }
   },
 
@@ -71,6 +72,7 @@ module.exports = {
         });
       }).then(function(user){
         //console.log(user);
+        res.sendStatus(201);
       });
       //leaving be for now
       // res.sendStatus(201);

@@ -1,5 +1,5 @@
   <div class="link-header">
-     <button class="shortlyButton">Besties</button>
+     <button class="messageButton">Besties</button>
   </div>
 
 <div class="greeting">
@@ -9,12 +9,13 @@
 
 <div id='messages'>
   <div class="messagesContainer">
-    <!-- <a href='{{ link.base_url + "/api/links/" + link.code }}' ng-repeat='link in data.links'>
-      <div class="linkContainer">
-        <p>{{ link.visits }}</p>
-        <p>{{ link.base_url + "/api/links/" + link.code }}</p>
-        <p>{{ link.url }}</p>
-      </div>
-    </a> -->
+    <div class="messageContainer" ng-repeat='message in messages'>
+      <p>{{ message.sender }}</p>
+      <p>{{ message.message }}</p>
+    </div>
   </div>
+  <form name="sendMessage" class="messageForm" ng-submit='addMessage()'>
+    <input type='text' class="messageInput" ng-model='message'>
+    <button class="messageButton">send!</button>
+  </form>
 </div>

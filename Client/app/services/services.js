@@ -31,7 +31,15 @@ angular.module('bestie.services', [])
         }
       });
     },
-    sendMessage : function (user, message) {
+    sendMessage : function (message, user) {
+      return $http({
+        method: 'POST',
+        url: '/besties/messages',
+        data: {
+          user: user,
+          message: message
+        }
+      });
     }
   };
 });

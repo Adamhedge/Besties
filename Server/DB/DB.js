@@ -31,7 +31,7 @@ var pictures = sequelize.define('picture', {
 var messages = sequelize.define('message', {
   // id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   text: Sequelize.STRING,
-  bestie_ID: Sequelize.STRING,
+  bestie_ID: Sequelize.INTEGER,
 });
 
 var pictureComments = sequelize.define('pictureComment', {

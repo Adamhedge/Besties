@@ -1,19 +1,11 @@
 angular.module('bestie.landing', [])
 
 .controller('landingController', function ($scope, $q, landing) {
-  // Your code here
-  // $scope.data = {};
-  // $scope.getLinks = function () {
-  //   //var result = Links;
-  //   Links.GET()
-  //   .then(function (data) {
-  //     //console.log(data);
-  //     $scope.data.links = data;
-  //   });
-  // };
+
   $scope.myProfile = {};
   $scope.bestie = undefined;
 
+  //a Simple function to make a user.  Tests the database Sequelize functionality.
   $scope.makeUser = function(){
     console.log("The makeUser function works.");
     var user = {};
@@ -24,11 +16,14 @@ angular.module('bestie.landing', [])
     landing.makeUser(user);
   };
 
+  //Function that retrieves a user and their bestie.
+  //Assumes there is a bestie.  Also sets a default ID of 1 if no user is specified.
+  //Currently hardcoded to get the first user.
   $scope.getUser = function(){
     var myUser;
     var deferred = $q.defer();
     // return $q(function(){
-    landing.getUser().then(function(user){
+    landing.getUser(2).then(function(user){
       console.log("The user: " + user.data.user[0].name);
       myUser = user;
       $scope.name = user.data.user[0].name;
@@ -47,31 +42,39 @@ angular.module('bestie.landing', [])
 
   $scope.getMessages = function(){
     landing.getMessages($scope.myProfile.id, $scope.bestie.id).then(function(messages){
-      $scope.messages = messages;
+      //console.log("Messages : " + messages);
+      //console.log(messages);
+      $scope.messages = [];
+      for(var i = 0; i < messages.data.results.length; i ++){
+        //console.log(messages.data.results[i]);
+        $scope.messages[i] = {
+          message: messages.data.results[i].text,
+        };
+        if(messages.data.results[i].bestie_ID === $scope.bestie.id){
+          $scope.messages[i].sender = 'Me';
+        } else {
+          $scope.messages[i].sender = $scope.bestieName;
+        }
+      }
     });
   };
+
+  $scope.addMessage = function(){
+    console.log("Executing send message");
+    var thing = landing.sendMessage($scope.message, $scope.myProfile)
+    .then(function(res){
+      //console.log("I get to the get Messages call");
+      $scope.getMessages();
+    });
+    //console.log(thing);
+    $scope.message = '';
+  };
+  //Asynchronously loads the user profiles and messages.
   var promise = $scope.getUser();
   console.log(promise);
   promise.then(function(){
-    console.log("Made it to the promise");
+    //console.log("Made it to the promise");
     $scope.getMessages();
   });
 
 });
-
-// var users = sequelize.define('user', {
-//   //id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-//   user_name: Sequelize.STRING,
-//   password: Sequelize.STRING,
-//   profile_ID: Sequelize.STRING
-// });
-
-// var profiles = sequelize.define('profile', {
-//   //id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-//   user_ID: Sequelize.INTEGER,
-//   name: Sequelize.STRING,
-//   status: Sequelize.STRING,
-//   profile_pic: Sequelize.STRING,
-//   has_bestie: Sequelize.BOOLEAN,
-//   bestie_profile_ID: Sequelize.INTEGER
-// });
