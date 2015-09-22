@@ -18,27 +18,35 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Bestie, an app for you and your best friend.
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > People who want to be closely connected to their best friend or life mate.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > This is a social network for one.  You know who your bestie is.  Add them, share pictures with them, and send them notifications, just for the two of you.
 
 ## Problem ##
   > Describe the problem your product solves.
+  > The problem I'm solving personally is how to keep my wife and I on the same page day to day.  We use different calendar systems and have a lot of spam on social networks.  My wife also turns off notifications on her phone cause they're too spammy.  This is an app that's just about her and me, that she can be sure will always be sending her stuff from me that matters.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  > The app quickly links up you and your bestie and allows you to send messages and pictures just for the two of you.  There's more functionality after that, all of which you know and love but would rather just share with your bestie, and not the whole social world.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  It's just you and your bestie.
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Go to the website and follow the instructions.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > Bestie is how I talk to my bestie, and now I don't have to open the floodgates of notifications to get to him!
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  Send Adam and email.  He'll be in touch.

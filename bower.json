@@ -1,0 +1,20 @@
+{
+  "name": "bestie",
+  "version": "0.0.1",
+  "authors": [
+    "Adam Hedgpeth"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib"
+  ],
+  "dependencies": {
+    "angular": "~1.3.16",
+    "angular-mocks": "~1.3.16",
+    "angular-route": "~1.3.16",
+    "oauth-ng": "~0.4.2"
+  }
+}

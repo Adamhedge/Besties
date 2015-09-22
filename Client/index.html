@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app='bestie'>
+  <head>
+    <meta charset="utf-8" />
+    <title>Bestie</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <base href="/">
+  </head>
+  <body>
+    THE BESTIE APP.
+
+    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
+    <div ng-view></div>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script src ="app/services/FB.js"></script>
+    <script src ="app/bestieLanding/landing.js"></script>
+    <script src="app/services/services.js"></script>
+    <script src="app/app.js"></script>
+  </body>
+</html>
