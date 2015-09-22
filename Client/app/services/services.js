@@ -21,9 +21,20 @@ angular.module('bestie.services', [])
         url: '/besties/users/',
         params: {ID: data}
       });
+    },
+    getMessages : function (user, bestie) {
+      return $http({
+        method: 'GET',
+        url: '/besties/messages/',
+        params: { id: user,
+                  bestie: bestie
+        }
+      });
+    },
+    sendMessage : function (user, message) {
     }
   };
-})
+});
 
 //.factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!
@@ -73,4 +84,3 @@ angular.module('bestie.services', [])
 //     signout: signout
 //   };
 // })
-;

@@ -3,13 +3,22 @@ var bodyParser = require('body-parser');
 
 module.exports = {
   messages: {
-    get: function (res) {
-      // db.Messages.sync().then(function() {
-      //   db.Messages.findAll().then(function(msg){
-      //       res.send({results: msg});
-      //     })
-      // });
-    }, // a function which produces all the messages
+    get: function (userID, bestieID, res) {
+      db.Messages.sync().then(function() {
+        db.Messages.findAll({
+          where: {
+            userID: userID,
+            bestie_ID: bestieID
+          }
+        }).then(function(msg){
+          console.log("Success");
+          res.send({results: msg});
+        });
+      });
+      // text: Sequelize.STRING,
+      // bestie_ID: Sequelize.STRING,
+      // user_ID: Sequelize.STRING
+    },
     post: function (data, res) {
       console.log(data);
       // db.Messages.sync().then(function() {
@@ -37,15 +46,15 @@ module.exports = {
 
   users: {
     // Ditto as above.
-    get: function (data, req, res) {
-      console.log("Request Data: " + data.ID);
+    get: function (ID, req, res) {
+      //console.log("Request Data: " + ID);
       db.Users.sync().then(function(){
         db.Users.findAll({
         where: {
-          ID: 1,
+          ID: ID,
         }
       }).then(function(user){
-          console.log("result? : " + res);
+          //console.log("result? : " + user.name);
           res.send({user: user});
         });
       });

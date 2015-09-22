@@ -16,7 +16,9 @@ app.use(parser.urlencoded({ extended: true })); // for parsing application/x-www
 module.exports = {
   messages: {
     get: function (req, res) {
-      models.messages.get(res);
+      var userID = req.param('id');
+      var bestieID = req.param('bestie');
+      models.messages.get(userID, bestieID, res);
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       var data = req.body;
@@ -27,14 +29,14 @@ module.exports = {
   users: {
     // Ditto as above
     get: function (req, res) {
-      console.log("The controller works.");
+      //console.log("The controller works.");
       var data = req.body;
-      var params = req.param('ID');
-      console.log("The params: " + params);
-      models.users.get(data, req, res);
+      var ID = req.param('ID') || 1;
+      //console.log("The params: " + ID);
+      models.users.get(ID, req, res);
     },
     post: function (req, res) {
-      console.log("The controller works.");
+      //console.log("The controller works.");
       var data = req.body;
       models.users.post(data, res);
     }

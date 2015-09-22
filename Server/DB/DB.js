@@ -32,7 +32,6 @@ var messages = sequelize.define('message', {
   // id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   text: Sequelize.STRING,
   bestie_ID: Sequelize.STRING,
-  user_ID: Sequelize.STRING
 });
 
 var pictureComments = sequelize.define('pictureComment', {
@@ -40,8 +39,8 @@ var pictureComments = sequelize.define('pictureComment', {
   message_ID: Sequelize.INTEGER
 });
 
-users.hasMany(messages, {foreignKey: 'user_ID'});
-users.hasMany(pictures, {foreignKey: 'user_ID'});
+users.hasMany(messages);
+users.hasMany(pictures);
 pictures.belongsToMany(messages, {through: 'pictureComments'});
 messages.belongsToMany(pictures, {through: 'pictureComments'});
 
